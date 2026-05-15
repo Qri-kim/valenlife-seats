@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Map - 좌석 배치도</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // 브랜드 컬러 설정
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-navy': '#0A1450',
+                        'brand-cyan': '#00E1DC',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide-react@latest"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', 'Pretendard', sans-serif; }
+        
+        /* 스크롤바 커스텀 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #0A1450; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useMemo } = React;
+        const { 
+            Search, MapPin, Users, Coffee, Video, Info, X, 
+            Monitor, Printer, LayoutDashboard, Package 
+        } = LucideReact;
+
+        // ==========================================
+        // 💡 데이터 (원본 코드와 동일)
+        // ==========================================
+        const OFFICE_DATA = {
+            zones: [
+                { id: 'z_people', name: 'People팀', x: 12, y: 4, w: 15, h: 18 },
+                { id: 'z_global', name: '글로벌 마케팅팀', x: 32, y: 4, w: 20, h: 25 },
+                { id: 'z_retail', name: '리테일 비즈니스팀', x: 52, y: 4, w: 20, h: 25 },
+                { id: 'z_future', name: '브랜드마케팅팀 | 미래내일', x: 76, y: 4, w: 22, h: 18 },
+                { id: 'z_brand', name: '브랜드마케팅팀', x: 12, y: 29, w: 64, h: 25 },
+                { id: 'z_design', name: '디자인팀', x: 12, y: 55, w: 20, h: 24 },
+                { id: 'z_content', name: '콘텐츠팀', x: 42, y: 55, w: 25, h: 24 },
+            ],
+            rooms: [
+                { id: 'r_3a', name: '회의실 3A', type: 'meeting', x: 2, y: 32, w: 9, h: 18, tags: [{ text: '최대 6명 수용 가능', style: 'bg-brand-navy text-white' }, { text: '프로젝터 없음', style: 'bg-gray-200 text-gray-500' }] },
+                { id: 'r_3b', name: '회의실 3B', type: 'meeting', x: 2, y: 6, w: 9, h: 18, tags: [{ text: '최대 10명 수용 가능', style: 'bg-brand-navy text-white' }, { text: '프로젝터 사용 가능', style: 'bg-brand-cyan text-brand-navy' }] },
+                { id: 'r_3c', name: '회의실 3C', type: 'meeting', x: 12, y: 82, w: 12, h: 14, tags: [{ text: '최대 8명 수용 가능', style: 'bg-brand-navy text-white' }, { text: '프로젝터 사용 가능', style: 'bg-brand-cyan text-brand-navy' }] },
+                { id: 'r_lounge', name: '라운지', type: 'lounge', x: 26, y: 82, w: 48, h: 14, tags: [{ text: '오픈 라운지', style: 'bg-brand-navy text-white' }, { text: '빔프로젝터 사용 가능', style: 'bg-brand-cyan text-brand-navy' }] },
+                { id: 'r_cafe', name: '카페테리아', type: 'lounge', x: 76, y: 82, w: 22, h: 14, tags: [{ text: '커피머신', style: 'bg-brand-cyan text-brand-navy' }, { text: '다과 준비됨', style: 'bg-blue-100 text-brand-navy' }] },
+                { id: 'r_storage', name: '창고', type: 'storage', x: 76, y: 32, w: 22, h: 20, isStorage: true },
+                { id: 'r_oa', name: 'OA', type: 'oa', x: 76, y: 58, w: 22, h: 20, tags: [{ text: '복합기 이용 가능', style: 'bg-brand-cyan text-brand-navy' }, { text: '비상약', style: 'bg-blue-100 text-brand-navy' }, { text: '사무용품', style: 'bg-gray-100 text-brand-navy' }] },
+            ],
+            seats: [
+                // 1. 피플팀
+                { id: 'p1', zoneId: 'z_people', customZoneName: '발렌라이프', x: 19, y: 9, name: '민홍규', role: 'CEO대표' },
+                { id: 'p2', zoneId: 'z_people', x: 24, y: 9, name: '차정한', role: 'People팀장' },
+                { id: 'p3', zoneId: 'z_people', x: 14, y: 16, name: '조유리', role: 'People팀' },
+                { id: 'p4', zoneId: 'z_people', x: 19, y: 16, name: '김규리', role: 'People팀' },
+                { id: 'p5', zoneId: 'z_people', x: 24, y: 16, name: '윤수경', role: 'People팀' },
+                // 2. 글로벌 마케팅팀
+                { id: 'g1', zoneId: 'z_global', x: 34, y: 9, name: '심은보', role: '글로벌마케팅팀' },
+                { id: 'g2', zoneId: 'z_global', x: 39, y: 9, name: '정서현', role: '글로벌마케팅팀' },
+                { id: 'g3', zoneId: 'z_global', x: 44, y: 9, name: '조연우', role: '글로벌마케팅팀' },
+                { id: 'g4', zoneId: 'z_global', x: 49, y: 9, name: '엄서영', role: '글로벌마케팅팀' },
+                { id: 'g5', zoneId: 'z_global', x: 34, y: 16

@@ -17,7 +17,7 @@
 
   <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-    body { font-family: 'Pretendard', sans-serif; background-color: #f9fafb; }
+    body { font-family: 'Pretendard', sans-serif; background-color: #f9fafb; margin: 0; }
   </style>
 </head>
 <body>
@@ -58,6 +58,7 @@
         { id: 'z_retail', name: '리테일 비즈니스팀', x: 52, y: 4, w: 20, h: 25 },
         { id: 'z_future', name: '브랜드마케팅팀 | 미래내일', x: 76, y: 4, w: 22, h: 18 },
         { id: 'z_brand', name: '브랜드마케팅팀', x: 12, y: 29, w: 64, h: 25 },
+        { id: 'z_bm', name: 'BM팀', hideBox: true },
         { id: 'z_design', name: '디자인팀', x: 12, y: 55, w: 20, h: 24 },
         { id: 'z_content', name: '콘텐츠팀', x: 42, y: 55, w: 25, h: 24 },
       ],
@@ -96,14 +97,14 @@
       // 💡 [STEP 3] 개인별 좌석 데이터 입력
       // ==========================================
       seats: [
-        // 1. 피플팀
+        // 1. 피플팀 (z_people) - 가운데 정렬
         { id: 'p1', zoneId: 'z_people', customZoneName: '발렌라이프', x: 19, y: 9, name: '민홍규', role: 'CEO대표' },
         { id: 'p2', zoneId: 'z_people', x: 24, y: 9, name: '차정한', role: 'People팀장' },
         { id: 'p3', zoneId: 'z_people', x: 14, y: 16, name: '조유리', role: 'People팀' },
         { id: 'p4', zoneId: 'z_people', x: 19, y: 16, name: '김규리', role: 'People팀' },
         { id: 'p5', zoneId: 'z_people', x: 24, y: 16, name: '윤수경', role: 'People팀' },
 
-        // 2. 글로벌 마케팅팀
+        // 2. 글로벌 마케팅팀 (z_global)
         { id: 'g1', zoneId: 'z_global', x: 34, y: 9, name: '심은보', role: '글로벌마케팅팀' },
         { id: 'g2', zoneId: 'z_global', x: 39, y: 9, name: '정서현', role: '글로벌마케팅팀' },
         { id: 'g3', zoneId: 'z_global', x: 44, y: 9, name: '조연우', role: '글로벌마케팅팀' },
@@ -115,9 +116,9 @@
         { id: 'g9', zoneId: 'z_global', x: 34, y: 24, name: '야하기 미나', role: '글로벌마케팅팀' },
         { id: 'g10', zoneId: 'z_global', x: 39, y: 24, name: '조미화', role: '글로벌마케팅팀' },
         { id: 'g11', zoneId: 'z_global', x: 44, y: 24, name: '정효재', role: '글로벌마케팅팀' },
-        { id: 'g12', zoneId: 'z_global', x: 49, y: 24, name: '미도', role: '글로벌마케팅팀' }, 
+        { id: 'g12', zoneId: 'z_global', x: 49, y: 24, name: '미도', role: '글로벌마케팅팀' }, // 정효재 옆 미도 추가
 
-        // 3. 리테일 비즈니스팀
+        // 3. 리테일 비즈니스팀 (z_retail)
         { id: 'r1', zoneId: 'z_retail', x: 54, y: 9, name: '최윤서', role: '리테일 비즈니스팀 / Online Part 1' },
         { id: 'r2', zoneId: 'z_retail', x: 59, y: 9, name: '김주연', role: '리테일 비즈니스팀 / Online Part 1' },
         { id: 'r3', zoneId: 'z_retail', x: 64, y: 9, name: '윤채빈', role: '리테일 비즈니스팀 / Online Part 2' },
@@ -131,36 +132,42 @@
         { id: 'r11', zoneId: 'z_retail', x: 64, y: 24, name: '장소희', role: '리테일 비즈니스팀 / Offline Part 2' },
         { id: 'r12', zoneId: 'z_retail', x: 69, y: 24, name: '엄윤희', role: '리테일 비즈니스팀 / Offline Part 1' },
 
-        // 4. 브랜드마케팅팀
-        { id: 'b1', zoneId: 'z_brand', x: 14, y: 34, name: '조현정', role: '브랜드마케팅팀 / Growth Part 2' },
-        { id: 'b2', zoneId: 'z_brand', x: 19, y: 34, name: '김나연', role: '브랜드마케팅팀 / Growth Part 2' },
-        { id: 'b3', zoneId: 'z_brand', x: 24, y: 34, name: '박민영', role: '브랜드마케팅팀 / Growth Part 2 파트장' },
-        { id: 'b4', zoneId: 'z_brand', x: 29, y: 34, name: '정원식', role: '브랜드마케팅팀 / Growth Part 2' },
-        { id: 'b5', zoneId: 'z_brand', x: 14, y: 41, name: '김호진', role: '브랜드마케팅팀 / Growth Part 1' },
-        { id: 'b6', zoneId: 'z_brand', x: 19, y: 41, name: '박상은', role: '브랜드마케팅팀 / Growth Part 2' },
-        { id: 'b7', zoneId: 'z_brand', x: 24, y: 41, name: '장연주', role: '브랜드마케팅팀 / Growth Part 2' }, 
-        { id: 'b8', zoneId: 'z_brand', x: 29, y: 41, name: '박지혜', role: '브랜드마케팅팀 / Growth Part 2' },
-        { id: 'b9', zoneId: 'z_brand', x: 14, y: 49, name: '김예은', role: '브랜드마케팅팀 / Growth Part 1' },
-        { id: 'b10', zoneId: 'z_brand', x: 19, y: 49, name: '윤석찬', role: '브랜드마케팅팀 / Growth Part 1 파트장' },
-        { id: 'b11', zoneId: 'z_brand', x: 24, y: 49, name: '조영진', role: '브랜드마케팅팀 / Growth Part 1' },
-        { id: 'b_lead1', zoneId: 'z_brand', customZoneName: 'Marketing Center', x: 29, y: 49, name: '임연주', role: 'Marketing Center 센터장\n브랜드마케팅팀 팀장' },
+        // 4. 브랜드마케팅팀 (z_brand)
+        { id: 'b1', zoneId: 'z_brand', x: 14, y: 34, name: '김호진', role: '브랜드마케팅팀 / Growth Part 1' },
+        { id: 'b2', zoneId: 'z_brand', x: 19, y: 34, name: '조영진', role: '브랜드마케팅팀 / Growth Part 1' },
+        { id: 'b3', zoneId: 'z_brand', x: 24, y: 34, name: '김예은', role: '브랜드마케팅팀 / Growth Part 1' },
+        { id: 'b4', zoneId: 'z_brand', x: 29, y: 34, name: '윤석찬', role: '브랜드마케팅팀 / Growth Part 1 파트장' },
+        
+        { id: 'b5', zoneId: 'z_brand', x: 14, y: 41, name: '박상은', role: '브랜드마케팅팀 / Growth Part 2' },
+        { id: 'b6', zoneId: 'z_brand', x: 19, y: 41, name: '박지혜', role: '브랜드마케팅팀 / Growth Part 2' },
+        { id: 'b7', zoneId: 'z_brand', x: 24, y: 41, name: '정원식', role: '브랜드마케팅팀 / Growth Part 2' },
+        { id: 'b_lead1', zoneId: 'z_brand', customZoneName: 'Marketing Center', x: 29, y: 41, name: '임연주', role: 'Marketing Center 센터장\n브랜드마케팅팀 팀장' },
+        
+        { id: 'b8', zoneId: 'z_brand', x: 14, y: 49, name: '조현정', role: '브랜드마케팅팀 / Growth Part 2' },
+        { id: 'b9', zoneId: 'z_brand', x: 19, y: 49, name: '김나연', role: '브랜드마케팅팀 / Growth Part 2' },
+        { id: 'b10', zoneId: 'z_brand', x: 24, y: 49, name: '장연주', role: '브랜드마케팅팀 / Growth Part 2' },
+        { id: 'b11', zoneId: 'z_brand', x: 29, y: 49, name: '박민영', role: '브랜드마케팅팀 / Growth Part 2 파트장' },
+        
+        // 우측 블록
         { id: 'b12', zoneId: 'z_brand', x: 44, y: 34, name: '', role: '공석' },
         { id: 'b13', zoneId: 'z_brand', x: 49, y: 34, name: '박재영', role: '브랜드마케팅팀 / Growth Part 3 파트장' },
         { id: 'b14', zoneId: 'z_brand', x: 54, y: 34, name: '최석현', role: '브랜드마케팅팀 / Growth Part 3' },
         { id: 'b15', zoneId: 'z_brand', x: 59, y: 34, name: '이다빈', role: '브랜드마케팅팀 / Growth Part 3' },
         { id: 'b16', zoneId: 'z_brand', x: 64, y: 34, name: '홍성현', role: '브랜드마케팅팀 / Growth Part 3' },
-        { id: 'b17', zoneId: 'z_brand', customZoneName: 'BM팀', x: 44, y: 41, name: '김정륜', role: 'BM팀' },
-        { id: 'b18', zoneId: 'z_brand', customZoneName: 'BM팀', x: 49, y: 41, name: '김현아', role: 'BM팀' }, 
-        { id: 'b19', zoneId: 'z_brand', customZoneName: 'BM팀', x: 54, y: 41, name: '장예지', role: 'BM팀' },
+        
+        { id: 'b17', zoneId: 'z_bm', customZoneName: 'BM팀', x: 44, y: 41, name: '김정륜', role: 'BM팀' },
+        { id: 'b18', zoneId: 'z_bm', customZoneName: 'BM팀', x: 49, y: 41, name: '김현아', role: 'BM팀' },
+        { id: 'b19', zoneId: 'z_bm', customZoneName: 'BM팀', x: 54, y: 41, name: '장예지', role: 'BM팀' },
         { id: 'b20', zoneId: 'z_brand', x: 59, y: 41, name: '전소연', role: '브랜드마케팅팀 / Growth Part 4' },
         { id: 'b21', zoneId: 'z_brand', x: 64, y: 41, name: '권동현', role: '브랜드마케팅팀 / Growth Part 4' },
-        { id: 'b22', zoneId: 'z_brand', customZoneName: 'BM팀', x: 44, y: 49, name: '서윤희', role: 'BM팀' },
+        
+        { id: 'b22', zoneId: 'z_bm', customZoneName: 'BM팀', x: 44, y: 49, name: '서윤희', role: 'BM팀' },
         { id: 'b_lead2', zoneId: 'z_brand', customZoneName: '발렌라이프', x: 49, y: 49, name: '최가희', role: 'CMO대표' },
         { id: 'b23', zoneId: 'z_brand', x: 54, y: 49, name: '모영보', role: '브랜드마케팅팀 / Growth Part 4' },
         { id: 'b24', zoneId: 'z_brand', x: 59, y: 49, name: '안종현', role: '브랜드마케팅팀 / Growth Part 4 파트장' },
         { id: 'b25', zoneId: 'z_brand', x: 64, y: 49, name: '이세진', role: '브랜드마케팅팀 / Growth Part 4' },
 
-        // 5. 디자인팀
+        // 5. 디자인팀 (z_design)
         { id: 'd1', zoneId: 'z_design', x: 14, y: 60, name: '이소미', role: '디자인팀' },
         { id: 'd2', zoneId: 'z_design', x: 19, y: 60, name: '정민주', role: '디자인팀' },
         { id: 'd3', zoneId: 'z_design', x: 24, y: 60, name: '천다희', role: '디자인팀' },
@@ -169,12 +176,13 @@
         { id: 'd6', zoneId: 'z_design', x: 19, y: 67, name: '김태연', role: '디자인팀' },
         { id: 'd7', zoneId: 'z_design', x: 24, y: 67, name: '김진우', role: '디자인팀' },
         { id: 'd8', zoneId: 'z_design', x: 29, y: 67, name: '원아람', role: '디자인팀' },
+        
         { id: 'd9', zoneId: 'z_design', x: 14, y: 75, name: '엄정인', role: '디자인팀' },
         { id: 'd10', zoneId: 'z_design', x: 19, y: 75, name: '채진아', role: '디자인팀' },
         { id: 'd11', zoneId: 'z_design', x: 24, y: 75, name: '한유리', role: '디자인팀' },
-        { id: 'd12', zoneId: 'z_design', x: 29, y: 75, name: '', role: '공석' }, 
+        { id: 'd12', zoneId: 'z_design', x: 29, y: 75, name: '', role: '공석' },
 
-        // 6. 콘텐츠팀
+        // 6. 콘텐츠팀 (z_content)
         { id: 'c1', zoneId: 'z_content', x: 44, y: 60, name: '이희욱', role: '콘텐츠팀 팀장' },
         { id: 'c2', zoneId: 'z_content', x: 49, y: 60, name: '조웅희', role: '콘텐츠팀' },
         { id: 'c3', zoneId: 'z_content', x: 54, y: 60, name: '백민', role: '콘텐츠팀' },
@@ -185,27 +193,29 @@
         { id: 'c8', zoneId: 'z_content', x: 54, y: 67, name: '최유진', role: '콘텐츠팀' },
         { id: 'c9', zoneId: 'z_content', x: 59, y: 67, name: '최시영', role: '콘텐츠팀' },
         { id: 'c10', zoneId: 'z_content', x: 64, y: 67, name: '조유림', role: '콘텐츠팀' },
+        
         { id: 'c11', zoneId: 'z_content', x: 44, y: 75, name: '이우진', role: '콘텐츠팀' },
         { id: 'c12', zoneId: 'z_content', x: 49, y: 75, name: '김동형', role: '콘텐츠팀' },
         { id: 'c13', zoneId: 'z_content', x: 54, y: 75, name: '박민지', role: '콘텐츠팀' },
         { id: 'c14', zoneId: 'z_content', x: 59, y: 75, name: '정소미', role: '콘텐츠팀' },
-        { id: 'c15', zoneId: 'z_content', x: 64, y: 75, name: '', role: '공석' }, 
+        { id: 'c15', zoneId: 'z_content', x: 64, y: 75, name: '', role: '공석' },
         
-        // 7. 미래내일 
-        { id: 'f_new1', zoneId: 'z_future', customZoneName: '브랜드마케팅팀', x: 78, y: 9, name: '임수민', role: '브랜드마케팅팀 / Growth Part 4' }, 
+        // 7. 미래내일 (z_future)
+        { id: 'f_new1', zoneId: 'z_future', customZoneName: '브랜드마케팅팀', x: 78, y: 9, name: '임수민', role: '브랜드마케팅팀 / Growth Part 4' },
         { id: 'f1', zoneId: 'z_future', x: 83, y: 9, name: '박서윤', role: '미래내일' }, 
         { id: 'f2', zoneId: 'z_future', x: 87, y: 9, name: '허지현', role: '미래내일' }, 
         { id: 'f3', zoneId: 'z_future', x: 91, y: 9, name: '곽찬예솔', role: '미래내일' },
         { id: 'f4', zoneId: 'z_future', x: 95, y: 9, name: '', role: '공석' }, 
-        { id: 'f_new2', zoneId: 'z_future', customZoneName: '브랜드마케팅팀', x: 78, y: 16, name: '전수빈', role: '브랜드마케팅팀 / Growth Part 4' }, 
-        { id: 'f5', zoneId: 'z_future', customZoneName: '브랜드마케팅팀', x: 83, y: 16, name: '나은서', role: '브랜드마케팅팀 / Growth Part 4' }, 
+        
+        { id: 'f_new2', zoneId: 'z_future', customZoneName: '브랜드마케팅팀', x: 78, y: 16, name: '전수빈', role: '브랜드마케팅팀 / Growth Part 4' },
+        { id: 'f5', zoneId: 'z_future', customZoneName: '브랜드마케팅팀', x: 83, y: 16, name: '나은서', role: '브랜드마케팅팀 / Growth Part 4' },
         { id: 'f6', zoneId: 'z_future', x: 87, y: 16, name: '김서아', role: '미래내일' },
         { id: 'f7', zoneId: 'z_future', x: 91, y: 16, name: '심효영', role: '미래내일' },
         { id: 'f8', zoneId: 'z_future', x: 95, y: 16, name: '', role: '공석' },
       ]
     };
 
-    // Custom Tailwind Styles
+    // --- Custom Tailwind Styles ---
     const CustomStyles = () => (
       <style dangerouslySetInnerHTML={{__html: `
         .bg-brand-navy { background-color: ${BRAND_NAVY}; }
@@ -234,9 +244,10 @@
       }, [searchTerm]);
 
       return (
-        <div className="min-h-screen bg-gray-50 font-sans text-gray-900 p-4 md:p-8">
+        <div className="min-h-screen font-sans text-gray-900 p-4 md:p-8">
           <CustomStyles />
           
+          {/* Header */}
           <header className="max-w-7xl mx-auto mb-8">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <div>
@@ -260,6 +271,7 @@
           </header>
 
           <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
+            {/* Sidebar: Legend & Teams */}
             <div className="lg:col-span-1 space-y-4">
               <section className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
                 <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Organization</h2>
@@ -298,12 +310,16 @@
               </section>
             </div>
 
+            {/* Main Floor Plan Canvas */}
             <div className="lg:col-span-3">
               <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 relative overflow-hidden h-[600px] w-full">
                 
+                {/* Base Grid Pattern */}
                 <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(#0A1450 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
 
+                {/* 1. Render Zones (팀 구역 배경) */}
                 {OFFICE_DATA.zones.map(zone => {
+                  if (zone.hideBox) return null;
                   const isActive = !selectedZone || selectedZone === zone.id;
                   return (
                     <div 
@@ -322,6 +338,7 @@
                   );
                 })}
 
+                {/* 2. Render Rooms (회의실 및 라운지, 창고, OA) */}
                 {OFFICE_DATA.rooms.map(room => {
                   let IconComponent = Coffee;
                   let styleClass = '';
@@ -350,6 +367,7 @@
                   );
                 })}
 
+                {/* 3. Render Individual Seats (개인 좌석) */}
                 {OFFICE_DATA.seats.map(seat => {
                   const zone = OFFICE_DATA.zones.find(z => z.id === seat.zoneId);
                   const isFilteredOut = (selectedZone && seat.zoneId !== selectedZone) || (searchTerm && !filteredSeats.includes(seat));
@@ -364,6 +382,7 @@
                       style={{ left: `${seat.x}%`, top: `${seat.y}%`, transform: 'translate(-50%, -50%)' }}
                     >
                       <Users size={14} />
+                      {/* Hover Tooltip */}
                       <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-brand-navy border border-gray-200 text-[10px] px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-10 font-bold">
                         {seat.name || '공석'} {seat.role ? `(${seat.role.replace('\n', ' / ')})` : ''}
                       </div>
@@ -372,6 +391,7 @@
                 })}
               </div>
 
+              {/* Legend Bottom */}
               <div className="mt-4 flex items-center justify-end gap-6 text-xs text-gray-500">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 border border-dashed border-brand-navy/50 bg-blue-50/20 rounded"></div>
@@ -397,9 +417,11 @@
             </div>
           </main>
 
+          {/* Detail Modal */}
           {selectedItem && (
             <div className="fixed inset-0 bg-brand-navy/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
               <div className="bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200 border border-gray-100">
+                {/* Header */}
                 <div className={`h-20 ${selectedItem.role !== undefined ? 'bg-brand-navy' : (selectedItem.type === 'meeting' ? 'bg-gray-100' : 'bg-brand-cyan/10')} flex items-center px-6 border-b border-gray-200`}>
                    {selectedItem.role !== undefined ? (
                      <div className="flex items-center gap-3">
@@ -422,6 +444,7 @@
                    )}
                 </div>
                 
+                {/* Body */}
                 <div className="p-6 space-y-4">
                 {selectedItem.role !== undefined ? (
                   <div className="space-y-3">
